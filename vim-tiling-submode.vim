@@ -58,6 +58,8 @@ fun! TilingSubmode()
             next
         elseif s == "p"
             previous
+
+        " start a terminal on current window
         elseif s == "!"
             term ++curwin
         else
