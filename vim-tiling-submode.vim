@@ -1,29 +1,48 @@
+
 " Tiling submode
 fun! TilingSubmode()
     while 1
+        " ask for a single char
         redraw
         let s = getchar()
         let s = nr2char(s)
 
+        " characters to quit
         if "\<space>\<cr>q" =~ s
             return
+
         elseif "whjklHJKLorRc=+-<>_|sv" =~ s
+            " commands that are mapped to themselves
             exec "normal! " . s
+
+        " splitting with empty buffers
         elseif s == "S"
             new
         elseif s == "V"
             vert new
 
+        " tabs gestion
+        elseif s == "t"
+            tabnew
+        elseif s == "T"
+            normal! T
+
+        " zooming windows
         elseif s == "z"
-            if exists(':ZommToggle')
+            " zoomwin plugin
+            if exists(':ZoomToggle')
                 ZoomToggle
             endif
         elseif s == "m"
             " maximize current window
             normal! |_
+
+        " files and buffers
         elseif s == "f"
             " ranger
-            normal " f"
+            if exists(':RangerCurrentFile')
+                normal " f"
+            endif
         elseif s == "b"
             Buffers
         elseif s == "i"
