@@ -11,7 +11,7 @@ fun! TilingSubmode()
         if "\<space>\<cr>q" =~ s
             return
 
-        elseif "whjklHJKLorRc=+-<>_|sv" =~ s
+        elseif "whjklHJKLorRc=+-<>_|svT" =~ s
             " commands that are mapped to themselves
             exec "normal! " . s
 
@@ -24,8 +24,6 @@ fun! TilingSubmode()
         " tabs gestion
         elseif s == "t"
             tabnew
-        elseif s == "T"
-            normal! T
 
         " zooming windows
         elseif s == "z"
@@ -55,9 +53,9 @@ fun! TilingSubmode()
             let buffnum = input("select buffer >")
             exec "b " . buffnum
         elseif s == "n"
-            next
+            bn
         elseif s == "p"
-            previous
+            bp
 
         " start a terminal on current window
         elseif s == "!"
