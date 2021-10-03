@@ -11,8 +11,8 @@ fun! TilingSubmode()
         if "\<space>\<cr>q" =~ s
             return
 
+        " commands that are mapped to themselves
         elseif "whjklHJKLorRc=+-<>_|svT" =~ s
-            " commands that are mapped to themselves
             exec "normal! " . s
 
         " splitting with empty buffers
@@ -24,6 +24,10 @@ fun! TilingSubmode()
         " tabs gestion
         elseif s == "t"
             tabnew
+        elseif s == "\<right>"
+            normal! gt
+        elseif s == "\<left>"
+            normal! gT
 
         " zooming windows
         elseif s == "z"
@@ -43,12 +47,12 @@ fun! TilingSubmode()
             endif
         elseif s == "b"
             Buffers
+        " display buffer info in a popup
         elseif s == "i"
-            " buffer Info
             redir =>output
             silent ls
             redir END
-            call popup_notification(split(output, '\n'), #{padding: [0, 10, 0, 1]})
+            call popup_notification(split(output, '\n'), #{padding: [0, 10, 0, 1], highlight: "String"})
         elseif s == "B"
             let buffnum = input("select buffer >")
             exec "b " . buffnum
@@ -63,6 +67,7 @@ fun! TilingSubmode()
         else
             echo "key [" . s . "] not mapped"
         endif
+
     endwhile
 endfun
 
