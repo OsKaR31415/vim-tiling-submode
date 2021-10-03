@@ -52,7 +52,7 @@ fun! TilingSubmode()
             redir =>output
             silent ls
             redir END
-            call popup_notification(split(output, '\n'), #{padding: [0, 10, 0, 1], highlight: "String"})
+            call popup_notification(split(output, '\n'), #{padding: [0, 10, 0, 1]})
         elseif s == "B"
             let buffnum = input("select buffer >")
             exec "b " . buffnum
