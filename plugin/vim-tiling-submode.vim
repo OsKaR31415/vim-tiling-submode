@@ -47,6 +47,7 @@ fun! TilingSubmode()
             endif
         elseif s == "b"
             Buffers
+            return
         " display buffer info in a popup
         elseif s == "i"
             redir =>output
