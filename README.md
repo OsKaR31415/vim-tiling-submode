@@ -33,4 +33,12 @@ Then, other keys are added to perform other action (like `n` that goes to the ne
 | previous buffer | `p` |
 | start an embed terminal in the current window | `!` |
 
+# Usage
 
+Just set a mapping for the `TilingSubmode` command. For example :
+
+```vim
+nmap <leader>q :TilingSubmode<cr>
+```
+
+That will make `\q` the shortcut to enter the tiling submode.
